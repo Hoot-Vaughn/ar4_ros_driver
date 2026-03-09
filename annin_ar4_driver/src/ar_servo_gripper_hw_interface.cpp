@@ -7,15 +7,14 @@
 namespace annin_ar4_driver {
 
 hardware_interface::CallbackReturn ARServoGripperHWInterface::on_init(
-    const hardware_interface::HardwareInfo& info) {
+  const hardware_interface::HardwareComponentInterfaceParams & params) {
   RCLCPP_INFO(logger_, "Initializing hardware interface...");
 
-  if (hardware_interface::SystemInterface::on_init(info) !=
-      hardware_interface::CallbackReturn::SUCCESS) {
-    return hardware_interface::CallbackReturn::ERROR;
+   if (hardware_interface::SystemInterface::on_init(params) != CallbackReturn::SUCCESS) {
+    return CallbackReturn::ERROR;
   }
 
-  info_ = info;
+  info_ = params.hardware_info;
 
   // Extract position limits from robot description
   if (!info_.limits.empty()) {
