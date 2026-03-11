@@ -1,0 +1,38 @@
+Colcon build commands
+
+how to manually import packages to ros2:
+export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_description:$AMENT_PREFIX_PATH
+export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_driver:$AMENT_PREFIX_PATH
+export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_firmware:$AMENT_PREFIX_PATH
+export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_gazebo:$AMENT_PREFIX_PATH
+export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_moveit_config:$AMENT_PREFIX_PATH
+sudo adduser $USER dialout
+
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/ros2_ws/install/annin_ar4_description/share/annin_ar4_description/meshes
+
+
+Launch AR4 in Rvis
+ros2 launch annin_ar4_moveit_config demo.launch.py ar_model:=mk4
+
+Launch Gazebo
+ros2 launch annin_ar4_gazebo gazebo.launch.py ar_model:=mk5
+
+
+Git Commands:
+git reflog 
+- tells current branch
+
+git checkout -b <new-branch-name>
+- making new branch and switch to it 
+
+git switch <branch-name>
+-swith branches
+
+git add .
+- add all files to repo
+
+git commit -m "Custom Message"
+- commit changes
+
+git push -u origin <branch>
+-commit changes to branch
