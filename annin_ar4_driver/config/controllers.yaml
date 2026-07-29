@@ -59,3 +59,4 @@
 /**/gripper_controller:
   ros__parameters:
     joint: $(var tf_prefix)gripper_jaw1_joint
+

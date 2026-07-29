@@ -3,8 +3,8 @@ import tempfile
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitution import Substitution
 from launch.substitutions import (
@@ -15,6 +15,13 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+
+#Added
+import os
+from launch import LaunchDescription
+from launch.actions import AppendEnvironmentVariable
+from ament_index_python.packages import get_package_prefix
+
 
 
 class ControllerConfigSubstitution(Substitution):
@@ -77,6 +84,10 @@ def generate_launch_description():
         initial_joint_controllers,
     ])
     robot_description = {"robot_description": robot_description_content}
+
+    #Added
+    package_description_prefix = get_package_prefix('annin_ar4_description')
+    package_parent_path = os.path.dirname(package_description_prefix)
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -141,7 +152,39 @@ def generate_launch_description():
         output="screen",
     )
 
+    # DELAY SEQUENCING: Wait for the spawning process to finish before triggering controllers
+    delay_joint_state_broadcaster = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=gazebo_spawn_robot,
+            on_exit=[joint_state_broadcaster_spawner],
+        )
+    )
+
+    delay_initial_joint_controller = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=gazebo_spawn_robot,
+            on_exit=[initial_joint_controller_spawner_started],
+        )
+    )
+
+    delay_gripper_joint_controller = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=gazebo_spawn_robot,
+            on_exit=[gripper_joint_controller_spawner_started],
+        )
+    )
+
+
+
+
     return LaunchDescription([
+
+        #Added
+        AppendEnvironmentVariable(
+            name='GZ_SIM_RESOURCE_PATH',
+            value=package_parent_path
+        ),
+
         ar_model_arg,
         tf_prefix_arg,
         gazebo_bridge,

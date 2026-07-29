@@ -197,7 +197,7 @@
   <collision>
     <origin xyz="0 0 -0.00887" rpy="3.14 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_2_Col.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_2_Col.STL"/>
     </geometry>
   </collision>
 
@@ -233,7 +233,7 @@
     <!-- offset fields (zero for now) -->
     <origin xyz="0 0 -0.00887" rpy="3.14 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_2_Cover.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_2_Cover.STL"/>
     </geometry>
     <material name="link2_cover_mat">
       <color rgba="0 0.35 1 1"/>
@@ -252,7 +252,7 @@
     <!-- offset fields (zero for now) -->
     <origin xyz="0 0 -0.00887" rpy="3.14 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_2_Logo.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_2_Logo.STL"/>
     </geometry>
     <material name="link2_logo_mat">
       <color rgba="1 1 1 1"/>
@@ -309,7 +309,7 @@
   <collision>
     <origin xyz="0 0 -0.03671" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_3_Col.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_3_Col.STL"/>
     </geometry>
   </collision>
 
@@ -382,7 +382,7 @@
   <collision>
     <origin xyz="0 0 -0.07594" rpy="0 0 -1.5708"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_4_Col.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_4_Col.STL"/>
     </geometry>
   </collision>
 
@@ -493,7 +493,7 @@
   <collision>
     <origin xyz="0 0 -0.0275" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_5_Col.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_5_Col.STL"/>
     </geometry>
   </collision>
 </link>
@@ -562,7 +562,7 @@
   <collision>
     <origin xyz="0 0 -0.016" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/link_6_Col.STL"/>
+      <mesh filename="package://annin_ar4_description/meshes/${robot_parameters['mesh_dir']}/Link_6_Col.STL"/>
     </geometry>
   </collision>
 </link>

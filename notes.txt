@@ -1,6 +1,15 @@
 Colcon build commands
 
-how to manually import packages to ros2:
+Source Ros and AR4:
+source /opt/ros/jazzy/setup.bash
+source ~/ros2_ws/install/setup.bash
+
+
+echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+how to manually import packages to ros2: (not needed with bare metal install-needed for WSL2)
 export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_description:$AMENT_PREFIX_PATH
 export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_driver:$AMENT_PREFIX_PATH
 export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_firmware:$AMENT_PREFIX_PATH
@@ -8,14 +17,27 @@ export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_gazebo:$AMENT_PREFIX_PA
 export AMENT_PREFIX_PATH=$HOME/ros2_ws/install/annin_ar4_moveit_config:$AMENT_PREFIX_PATH
 sudo adduser $USER dialout
 
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/ros2_ws/install/annin_ar4_description/share/annin_ar4_description/meshes
+
+
+Gazebo (how to fix gazebo to load the ar4 arm)
+export GZ_SIM_RESOURCE_PATH=~/ros2_ws/install/annin_ar4_description/share:~/ros2_ws/src/ar4_ros_driver
+export GZ_MODEL_PATH=~/ros2_ws/install/annin_ar4_description/share:~/ros2_ws/src/ar4_ros_driver
+
+Automate 
+echo 'export GZ_SIM_RESOURCE_PATH=~/ros2_ws/install/annin_ar4_description/share:~/ros2_ws/src/ar4_ros_driver' >> ~/.bashrc
+echo 'export GZ_MODEL_PATH=~/ros2_ws/install/annin_ar4_description/share:~/ros2_ws/src/ar4_ros_driver' >> ~/.bashrc
 
 
 Launch AR4 in Rvis
 ros2 launch annin_ar4_moveit_config demo.launch.py ar_model:=mk4
 
+Launch AR4 in Rvis for Gazebo
+ros2 launch annin_ar4_moveit_config moveit.launch.py use_sim_time:=true include_gripper:=True
+
+
+
 Launch Gazebo
-ros2 launch annin_ar4_gazebo gazebo.launch.py ar_model:=mk5
+ros2 launch annin_ar4_gazebo gazebo.launch.py ar_model:=mk4
 
 
 Git Commands:
