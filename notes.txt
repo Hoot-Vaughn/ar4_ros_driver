@@ -58,3 +58,7 @@ git commit -m "Custom Message"
 
 git push -u origin <branch>
 -commit changes to branch
+
+
+git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
